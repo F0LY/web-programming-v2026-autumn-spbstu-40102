@@ -30,10 +30,9 @@ export function getUniqueActors(movies) {
 }
 
 export function groupMoviesByCastSize(movies) {
-  const result = {};
+  const result = Object.create(null);
 
-  for (let i = 0; i < movies.length; i++) {
-    const movie = movies[i];
+  movies.forEach((movie) => {
     const size = movie.castSize;
 
     if (!result[size]) {
@@ -41,11 +40,10 @@ export function groupMoviesByCastSize(movies) {
     }
 
     result[size].push(movie);
-  }
+  });
 
   return result;
 }
-
 export function getMoviesByActor(movies, actorName) {
   return movies.filter((movie) => movie.actors.includes(actorName));
 }
