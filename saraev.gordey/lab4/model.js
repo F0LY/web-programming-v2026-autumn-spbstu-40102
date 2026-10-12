@@ -33,16 +33,13 @@ export function groupMoviesByCastSize(movies) {
   const result = {};
 
   for (const movie of movies) {
-    // Получаем размер каста
     const size = movie.castSize;
 
-    const key = String(size);
-
-    if (!result[key]) {
-      result[key] = [];
+    if (!result[size]) {
+      result[size] = [];
     }
 
-    result[key].push(movie);
+    result[size].push(movie);
   }
 
   return result;
