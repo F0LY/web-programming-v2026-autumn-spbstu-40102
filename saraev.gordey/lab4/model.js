@@ -31,8 +31,7 @@ export function getUniqueActors(movies) {
 
 export function groupMoviesByCastSize(movies) {
   return movies.reduce((acc, movie) => {
-    const key = String(movie.castSize);
-    (acc[key] = acc[key] || []).push(movie);
+    (acc[movie.castSize] = acc[movie.castSize] || []).push(movie);
     return acc;
   }, {});
 }
