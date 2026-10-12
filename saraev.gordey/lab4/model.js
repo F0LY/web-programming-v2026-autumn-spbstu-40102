@@ -1,8 +1,8 @@
 export class Movie {
-  constructor(title, director) {
+  constructor(title, director, actors = []) {
     this.title = title;
     this.director = director;
-    this.actors = [];
+    this.actors = actors;
   }
 
   addActor(name) {
@@ -30,24 +30,26 @@ export function getUniqueActors(movies) {
 }
 
 export function groupMoviesByCastSize(movies) {
-  const result = Object.create(null);
+  const result = {};
 
-  movies.forEach((movie) => {
+  for (const movie of movies) {
     const size = movie.castSize;
+    const key = String(size);
 
-    if (!result[size]) {
-      result[size] = [];
+    if (!result[key]) {
+      result[key] = [];
     }
 
-    result[size].push(movie);
-  });
+    result[key].push(movie);
+  }
 
   return result;
 }
-export function getMoviesByActor(movies, actorName) {
+
+export function findMoviesByActor(movies, actorName) {
   return movies.filter((movie) => movie.actors.includes(actorName));
 }
 
-export function getAllTitles(movies) {
+export function getMovieTitles(movies) {
   return movies.map((movie) => movie.title);
 }
