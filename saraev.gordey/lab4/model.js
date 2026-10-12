@@ -1,45 +1,46 @@
 export class Movie {
-    constructor(title, director) {
-        this.title = title;
-        this.director = director;
-        this.actors = [];
-    }
+  constructor(title, director) {
+    this.title = title;
+    this.director = director;
+    this.actors = [];
+  }
 
-    addActor(name) {
-        this.actors.push(name);
-    }
+  addActor(name) {
+    this.actors.push(name);
+  }
 
-    removeActor(name) {
-        this.actors = this.actors.filter((actor) => actor !== name);
-    }
+  removeActor(name) {
+    this.actors = this.actors.filter((actor) => actor !== name);
+  }
 
-    get castSize() {
-        return this.actors.length;
-    }
+  get castSize() {
+    return this.actors.length;
+  }
 }
 
 export function groupMoviesByDirector(movies) {
-    return movies.reduce((acc, movie) => {
-        (acc[movie.director] = acc[movie.director] || []).push(movie);
-        return acc;
-    }, {});
+  return movies.reduce((acc, movie) => {
+    (acc[movie.director] = acc[movie.director] || []).push(movie);
+    return acc;
+  }, {});
 }
 
 export function getUniqueActors(movies) {
-    return [...new Set(movies.flatMap((movie) => movie.actors))];
+  return [...new Set(movies.flatMap((movie) => movie.actors))];
 }
 
 export function groupMoviesByCastSize(movies) {
-    return movies.reduce((acc, movie) => {
-        (acc[movie.castSize] = acc[movie.castSize] || []).push(movie);
-        return acc;
-    }, {});
+  return movies.reduce((acc, movie) => {
+    const key = String(movie.castSize);
+    (acc[key] = acc[key] || []).push(movie);
+    return acc;
+  }, {});
 }
 
 export function getMoviesByActor(movies, actorName) {
-    return movies.filter((movie) => movie.actors.includes(actorName));
+  return movies.filter((movie) => movie.actors.includes(actorName));
 }
 
 export function getAllTitles(movies) {
-    return movies.map((movie) => movie.title);
+  return movies.map((movie) => movie.title);
 }
