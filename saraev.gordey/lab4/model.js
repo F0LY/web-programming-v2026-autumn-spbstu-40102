@@ -18,7 +18,7 @@ export class Movie {
   }
 }
 
-export function groupByDirector(movies) {
+export function groupMoviesByDirector(movies) {
   return movies.reduce((acc, movie) => {
     (acc[movie.director] = acc[movie.director] || []).push(movie);
     return acc;
