@@ -30,10 +30,20 @@ export function getUniqueActors(movies) {
 }
 
 export function groupMoviesByCastSize(movies) {
-  return movies.reduce((acc, movie) => {
-    (acc[movie.castSize] = acc[movie.castSize] || []).push(movie);
-    return acc;
-  }, {});
+  const result = {};
+
+  for (const movie of movies) {
+    const size = movie.castSize;
+    const key = String(size);
+
+    if (!result[key]) {
+      result[key] = [];
+    }
+
+    result[key].push(movie);
+  }
+
+  return result;
 }
 
 export function getMoviesByActor(movies, actorName) {
