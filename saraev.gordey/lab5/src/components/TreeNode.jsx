@@ -18,7 +18,10 @@ function TreeNode({node, expanded, onToggle}) {
   };
 
   return (
-    <li className="tree-node" data-testid={`tree-node-${node.id}`}>
+    <li
+      className="tree-node"
+      data-testid={hasChildren ? 'tree-branch' : 'tree-leaf'}
+    >
       <div
         className={`tree-node-content ${hasChildren ? 'clickable' : ''} ${isExpanded ? 'expanded' : ''}`}
         data-testid="tree-toggle"
