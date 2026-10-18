@@ -21,7 +21,7 @@ function TreeNode({node, expanded, onToggle}) {
     <li className="tree-node" data-testid={`tree-node-${node.id}`}>
       <div
         className={`tree-node-content ${hasChildren ? 'clickable' : ''} ${isExpanded ? 'expanded' : ''}`}
-        data-testid="tree-node-toggle"
+        data-testid="tree-toggle"
         onClick={() => hasChildren && onToggle(node.id)}
       >
         <span className="tree-icon">
