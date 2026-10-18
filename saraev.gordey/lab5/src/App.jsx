@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import TreeNode from './components/TreeNode';
 import './styles.css';
 
@@ -27,7 +27,7 @@ const defaultData = [
             name: 'Классика',
             type: 'genre',
             children: [
-              {id: 'b-1', name: 'Преступление и наказание', type: 'book'},
+              { id: 'b-1', name: 'Преступление и наказание', type: 'book' },
             ],
           },
         ],
@@ -74,12 +74,7 @@ function App() {
 
   const handleAddBook = (e) => {
     e.preventDefault();
-    if (
-      !formData.author ||
-      !formData.publisher ||
-      !formData.genre ||
-      !formData.title
-    ) {
+    if (!formData.author || !formData.publisher || !formData.genre || !formData.title) {
       return;
     }
 
@@ -124,11 +119,7 @@ function App() {
       pubNode.children.push(genNode);
     }
 
-    if (
-      !genNode.children.find(
-        (n) => n.name === formData.title && n.type === 'book',
-      )
-    ) {
+    if (!genNode.children.find((n) => n.name === formData.title && n.type === 'book')) {
       genNode.children.push({
         id: generateId('b'),
         name: formData.title,
@@ -137,7 +128,7 @@ function App() {
     }
 
     setTreeData(newTree);
-    setFormData({author: '', publisher: '', genre: '', title: ''});
+    setFormData({ author: '', publisher: '', genre: '', title: '' });
   };
 
   return (
@@ -153,7 +144,7 @@ function App() {
           name="author"
           placeholder="Автор"
           value={formData.author}
-          onChange={(e) => setFormData({...formData, author: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, author: e.target.value })}
           required
         />
         <input
@@ -161,7 +152,7 @@ function App() {
           placeholder="Издательство"
           value={formData.publisher}
           onChange={(e) =>
-            setFormData({...formData, publisher: e.target.value})
+            setFormData({ ...formData, publisher: e.target.value })
           }
           required
         />
@@ -169,14 +160,14 @@ function App() {
           name="genre"
           placeholder="Жанр"
           value={formData.genre}
-          onChange={(e) => setFormData({...formData, genre: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, genre: e.target.value })}
           required
         />
         <input
           name="title"
           placeholder="Название книги"
           value={formData.title}
-          onChange={(e) => setFormData({...formData, title: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           required
         />
         <button type="submit" data-testid="add-book-btn">
@@ -184,7 +175,7 @@ function App() {
         </button>
       </form>
 
-      <ul className="tree-root" data-testid="tree-list">
+      <ul className="tree-root" data-testid="tree">
         {treeData.map((node) => (
           <TreeNode
             key={node.id}
