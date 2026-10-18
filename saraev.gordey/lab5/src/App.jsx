@@ -44,7 +44,21 @@ function App() {
 
   const [expanded, setExpanded] = useState(() => {
     const saved = localStorage.getItem(STORAGE_EXPANDED);
-    return saved ? new Set(JSON.parse(saved)) : new Set();
+    if (saved) {
+      return new Set(JSON.parse(saved));
+    }
+    // Раскрываем все узлы по умолчанию
+    const allIds = new Set();
+    const collectIds = (nodes) => {
+      nodes.forEach((node) => {
+        allIds.add(node.id);
+        if (node.children) {
+          collectIds(node.children);
+        }
+      });
+    };
+    collectIds(defaultData);
+    return allIds;
   });
 
   const [formData, setFormData] = useState({
